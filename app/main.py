@@ -38,4 +38,4 @@ def update_task(task_id: int, updates: schemas.TaskUpdate, db: Session = Depends
 def delete_task(task_id: int, db: Session = Depends(get_db)):
     t = crud.get_task(db, task_id)
     if not t: raise HTTPException(status_code=404, detail="Task not found")
-    crud.delete_task(db, task_id)
+    crud.delete_task(db, t)

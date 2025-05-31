@@ -31,10 +31,10 @@ def create_task(task: schemas.TaskCreate, db: Session = Depends(get_db)):
     response_model=List[schemas.TaskOut],
     dependencies=[Depends(auth.get_token_header)]
 )
-def read_tasks(status: Optional[models.StatusEnum] = None,
+def read_tasks(task_status: Optional[models.StatusEnum] = None,
                due_date: Optional[datetime] = None,
                db: Session = Depends(get_db)):
-    return crud.get_tasks(db, status, due_date)
+    return crud.get_tasks(db, task_status, due_date)
 
 # получить только одну задачу по ID
 @app.get(

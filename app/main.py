@@ -23,7 +23,7 @@ def get_db():
     dependencies=[Depends(auth.get_token_header)]
 )
 def create_task(task: schemas.TaskCreate, db: Session = Depends(get_db)):
-    return crud.create_task(task, db)
+    return crud.create_task(db, task)
 
 # получить список задач
 @app.get(

@@ -17,10 +17,10 @@ class TaskCreate(TaskBase):
 # схема для обновления задачи, где все поля необязательны к заполнению
 # так же пустые поля обрезаются
 class TaskUpdate(BaseModel):
-    title: Optional[str]
-    description: Optional[str]
-    due_date: Optional[datetime]
-    status: Optional[StatusEnum]
+    title: Optional[str] = None
+    description: Optional[str] = None
+    due_date: Optional[datetime] = None
+    status: Optional[StatusEnum] = None
 
 # схема для ответа пользователю
 class TaskOut(TaskBase):

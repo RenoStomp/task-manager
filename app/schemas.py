@@ -1,11 +1,11 @@
 from datetime import datetime
-from typing import Optional, List
+from typing import Optional
 from pydantic import BaseModel, Field
 from .models import StatusEnum
 
 # создаём базу объектам валидации и преобразования
 class TaskBase(BaseModel):
-    title: str = Field(..., min_Length=1)
+    title: str = Field(..., min_length=1)
     description: Optional[str] = None
     due_date: Optional[datetime] = None
     status: Optional[StatusEnum] = StatusEnum.new

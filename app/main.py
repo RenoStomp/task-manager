@@ -43,9 +43,9 @@ def read_tasks(status: Optional[models.StatusEnum] = None,
     dependencies=[Depends(auth.get_token_header)]
 )
 def read_task(task_id: int, db: Session = Depends(get_db)):
-    t = crud.get_task(db, task_id)
-    if not t: raise HTTPException(status_code=404, detail="Task not found")
-    return t
+    db_task = crud.get_task(db, task_id)
+    if not db_task: raise HTTPException(status_code=404, detail="Task not found")
+    return db_task
 
 # обновить задачу
 @app.patch(
@@ -55,8 +55,10 @@ def read_task(task_id: int, db: Session = Depends(get_db)):
 )
 def update_task(
         task_id: int, updates: schemas.TaskUpdate, db: Session = Depends(get_db)):
-    t = crud.get_task(db, task_id)
-    if not t: raise HTTPException(status_code=404, detail="Task not found")
+    db_task = crud.get_task(db, task_id)
+    if not db_task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    return crud.update_task(db, db_task, updates)
 
 # удалить задачу
 @app.delete(
@@ -65,6 +67,6 @@ def update_task(
     dependencies=[Depends(auth.get_token_header)]
 )
 def delete_task(task_id: int, db: Session = Depends(get_db)):
-    t = crud.get_task(db, task_id)
-    if not t: raise HTTPException(status_code=404, detail="Task not found")
-    crud.delete_task(db, t)
+    db_task = crud.get_task(db, task_id)
+    if not db_task: raise HTTPException(status_code=404, detail="Task not found")
+    crud.delete_task(db, db_task)

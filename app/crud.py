@@ -8,11 +8,11 @@ def get_task(db: Session, task_id: int):
 
 # получить список задач отфильтрованных либо по статусу, либо по дате
 def get_tasks(db: Session, status=None, due_date=None):
-    q = db.query(model.Task)
+    q = db.query(models.Task)
     if status:
-        q = q.filter(model.Task.status == status)
+        q = q.filter(models.Task.status == status)
     if due_date:
-        q = q.filter(model.Task.due_date == due_date)
+        q = q.filter(models.Task.due_date == due_date)
     return q.all()
 
 # создать новую задачу

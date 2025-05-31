@@ -1,4 +1,3 @@
-from pyexpat import model
 from sqlalchemy.orm import Session
 from . import models, schemas
 

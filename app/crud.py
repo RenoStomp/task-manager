@@ -16,7 +16,7 @@ def get_tasks(db: Session, status=None, due_date=None):
 
 # создать новую задачу
 def create_task(db: Session, task: schemas.TaskCreate):
-    db_task = models.Task(**task.model.dump())
+    db_task = models.Task(**task.model_dump())
     db.add(db_task)
     db.commit()
     db.refresh(db_task)

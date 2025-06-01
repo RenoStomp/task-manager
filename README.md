@@ -129,7 +129,7 @@ X-Token: hardcoded-secret-token
     {
       "id": 1,
       "title": "Купить продукты",
-      "description": "Молоко, хлеб, яйца",
+      "description": "Молоко, хлеб, яйца, бананы,туалетная бумага",
       "due_date": "2025-06-01T20:00:00",
       "status": "new"
     },

@@ -17,8 +17,8 @@ class Task(Base):
 
     title = Column(String, index=True, nullable=False)
 
-    description = Column(String, nullable=False)
+    description = Column(String, nullable=True)
 
-    due_date = Column(DateTime, nullable=False)
+    due_date = Column(DateTime, nullable=True)
 
     status = Column(Enum(StatusEnum), default=StatusEnum.new, nullable=False)
